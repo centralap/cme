@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central de Monitoramento Eletrônico - CME</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eef2f7;
+      color: #333;
+      scroll-behavior: smooth;
+      display: flex;
+    }
+    nav {
+      width: 200px;
+      background-color: #003366;
+      min-height: 100vh;
+      padding-top: 30px;
+      position: sticky;
+      top: 0;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav ul li {
+      margin: 10px 0;
+      text-align: center;
+      position: relative;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+      display: block;
+      transition: background 0.3s;
+    }
+    nav ul li a:hover {
+      background-color: #00509e;
+    }
+    nav ul li.has-submenu > a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+    nav ul li .submenu {
+      display: none;
+      flex-direction: column;
+      background-color: #003366;
+      padding-left: 0;
+      margin-top: 5px;
+      transition: all 0.3s ease;
+    }
+    nav ul li .submenu li {
+      margin: 0;
+    }
+    nav ul li:hover .submenu {
+      display: flex;
+    }
+    nav ul li:hover > a .arrow {
+      transform: rotate(90deg);
+    }
+    .arrow {
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    main {
+      flex: 1;
+      padding: 0 20px;
+    }
+    header {
+      background-color: #003366;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    header img {
+      max-height: 80px;
+      margin-bottom: 5px;
+      background: transparent;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
+    }
+    h2 {
+      color: #003366;
+      margin-top: 20px;
+    }
+    .funcoes {
+      margin-bottom: 30px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li::before {
+      content: "\2713\0020";
+      color: #003366;
+    }
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9em;
+      margin-top: 40px;
+      border-top: 3px solid #00509e;
+    }
+    footer p {
+      margin: 5px 0;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      nav {
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        display: flex;
+        justify-content: center;
+      }
+      nav ul {
+        display: flex;
+      }
+      nav ul li {
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li>
+        <a href="restrito.html" target="_blank">🔒 Restrito</a>
+      </li>
+      <li class="has-submenu">
+        <a href="#">🖥️ Sistemas <span class="arrow">▶️</span></a>
+        <ul class="submenu">
+          <li><a href="https://akiles.ap.uetecnologia.com.br" target="_blank">Akiles</a></li>
+          <li><a href="https://prodoc.ap.gov.br/login" target="_blank">Prodoc</a></li>
+        </ul>
+      </li>
+      <li class="has-submenu">
+        <a href="#">📄 Requerimentos <span class="arrow">▶️</span></a>
+        <ul class="submenu">
+          <li><a href="https://atielnunes.github.io/cme-echo-2025/" target="_blank">Alteração de Endereço</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <header>
+      <img src="logo-pp.png" alt="Logo CME">
+      <h1>Central de Monitoramento Eletrônico - CME</h1>
+      <p>GOVERNO DO ESTADO DO AMAPÁ</p>
+      <p>SECRETARIA DE ESTADO DE JUSTIÇA E SEGURANÇA PÚBLICA</p>
+      <p>INSTITUTO DE ADMINISTRAÇÃO PENITENCIÁRIA DO AMAPÁ</p>
+    </header>
+
+    <div class="container">
+      <section class="funcoes">
+        <h2>Perfil da Central</h2>
+        <p>Uma Central de Monitoramento Eletrônico (CME) é um centro de controle que monitora a localização e os movimentos de indivíduos que utilizam tornozeleiras eletrônicas.</p>
+        <h3>Funções da CME:</h3>
+        <ul>
+          <li><strong>Monitoramento em tempo real:</strong> Recebe informações de localização da tornozeleira eletrônica.</li>
+          <li><strong>Supervisão e fiscalização:</strong> Verifica o cumprimento das condições impostas pela Justiça.</li>
+          <li><strong>Resposta a alertas:</strong> Aciona as autoridades em caso de violação das regras de monitoramento.</li>
+          <li><strong>Orientação e apoio:</strong> Oferece suporte aos monitorados.</li>
+          <li><strong>Gerenciamento de informações:</strong> Armazena e organiza dados dos monitorados.</li>
+          <li><strong>Elaboração de relatórios:</strong> Produz relatórios sobre o cumprimento das medidas.</li>
+        </ul>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Central de Monitoramento Eletrônico - CME | Governo do Estado do Amapá</p>
+      <p><strong>Endereço:</strong> Av. Machado de Assis, 372 – Santa Rita, CEP: 68.901-257</p>
+      <p><strong>Telefone:</strong> (096) 98415-2844</p>
+      <p><strong>Email:</strong> cme.iapen.ap@gmail.com</p>
+      <p><strong>Gerente:</strong> Bruna Maria Souza dos Santos - Decreto n.º 6188/2024 – GEA</p>
+    </footer>
+  </main>
+</body>
+</html>

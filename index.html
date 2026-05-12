@@ -1,208 +1,427 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Central de Monitoramento Eletrônico - CME</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #eef2f7;
-      color: #333;
-      scroll-behavior: smooth;
-      display: flex;
-    }
-    nav {
-      width: 200px;
-      background-color: #003366;
-      min-height: 100vh;
-      padding-top: 30px;
-      position: sticky;
-      top: 0;
-    }
-    nav ul {
-      list-style: none;
-      padding: 0;
-    }
-    nav ul li {
-      margin: 10px 0;
-      text-align: center;
-      position: relative;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 10px;
-      display: block;
-      transition: background 0.3s;
-    }
-    nav ul li a:hover {
-      background-color: #00509e;
-    }
-    nav ul li.has-submenu > a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-    }
-    nav ul li .submenu {
-      display: flex;
-      flex-direction: column;
-      background-color: #003366;
-      padding-left: 0;
-      margin-top: 5px;
-    }
-    nav ul li .submenu li {
-      margin: 0;
-    }
-    .arrow {
-      transition: transform 0.3s ease;
-      display: inline-block;
-    }
-    main {
-      flex: 1;
-      padding: 0 20px;
-    }
-    header {
-      background-color: #003366;
-      color: #fff;
-      padding: 10px 20px;
-      text-align: center;
-    }
-    header img {
-      max-height: 80px;
-      margin-bottom: 5px;
-      background: transparent;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease;
-    }
-    h2 {
-      color: #003366;
-      margin-top: 20px;
-    }
-    .funcoes {
-      margin-bottom: 30px;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    ul li::before {
-      content: "\2713\0020";
-      color: #003366;
-    }
-    footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.9em;
-      margin-top: 40px;
-      border-top: 3px solid #00509e;
-    }
-    footer p {
-      margin: 5px 0;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-      nav {
-        width: 100%;
-        height: auto;
-        min-height: auto;
-        display: flex;
-        justify-content: center;
-      }
-      nav ul {
-        display: flex;
-      }
-      nav ul li {
-        margin: 10px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CME Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:
+  radial-gradient(circle at top left,#0f2f6d 0%,transparent 35%),
+  radial-gradient(circle at bottom right,#08204b 0%,transparent 35%),
+  linear-gradient(135deg,#010b1d,#021736,#041f4d,#021736);
+  color:white;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+.container{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
+  padding:14px;
+}
+
+header{
+  text-align:center;
+  padding:10px 10px 18px;
+  position:relative;
+}
+
+header::before{
+  content:'';
+  position:absolute;
+  width:400px;
+  height:400px;
+  border:1px solid rgba(255,215,0,0.15);
+  border-radius:50%;
+  top:-250px;
+  left:-200px;
+}
+
+header::after{
+  content:'';
+  position:absolute;
+  width:500px;
+  height:500px;
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:50%;
+  top:-250px;
+  right:-250px;
+}
+
+.logo{
+  width:95px;
+  margin-bottom:8px;
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+}
+
+header h1{
+  font-size:24px;
+  font-weight:800;
+  margin-bottom:8px;
+  letter-spacing:1px;
+}
+
+.line{
+  width:260px;
+  max-width:90%;
+  height:2px;
+  background:linear-gradient(to right,transparent,#d4a53a,transparent);
+  margin:10px auto;
+}
+
+.gov{
+  font-size:13px;
+  letter-spacing:2px;
+  color:#e6e6e6;
+  margin-bottom:5px;
+}
+
+.sub{
+  font-size:11px;
+  letter-spacing:1px;
+  color:#d6d6d6;
+  margin-bottom:4px;
+}
+
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+
+.card{
+  position:relative;
+  background:rgba(6,25,58,0.75);
+  border:1px solid rgba(126,161,255,0.30);
+  border-radius:20px;
+  padding:18px 12px;
+  text-decoration:none;
+  color:white;
+  text-align:center;
+  backdrop-filter:blur(10px);
+  overflow:hidden;
+  transition:0.35s;
+  box-shadow:
+  inset 0 0 30px rgba(255,255,255,0.03),
+  0 10px 30px rgba(0,0,0,0.25);
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:#d4a53a;
+  box-shadow:
+  0 0 25px rgba(255,215,0,0.15),
+  0 15px 35px rgba(0,0,0,0.35);
+}
+
+.icon-box{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  margin:0 auto 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.icon-box::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:2px solid currentColor;
+  opacity:0.5;
+}
+
+.icon-box i{
+  font-size:30px;
+}
+
+.blue{ color:#4ea2ff; }
+.green{ color:#3dff8f; }
+.purple{ color:#bb6dff; }
+.orange{ color:#ffbf4d; }
+.cyan{ color:#5be8ff; }
+.red{ color:#ff5f7a; }
+.pink{ color:#ff59c7; }
+.yellow{ color:#ffd84d; }
+
+.akiles-box{
+  width:72px;
+  height:72px;
+  margin:0 auto 14px;
+  border-radius:50%;
+  overflow:hidden;
+  border:2px solid rgba(255,255,255,0.25);
+  box-shadow:0 0 20px rgba(255,255,255,0.10);
+}
+
+.akiles-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.card h3{
+  font-size:16px;
+  margin-bottom:6px;
+  font-weight:700;
+}
+
+.card p{
+  color:#d4d8e3;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.arrow{
+  font-size:18px;
+  color:#d4a53a;
+}
+
+footer{
+  margin-top:14px;
+  background:rgba(6,25,58,0.85);
+  border:1px solid rgba(212,165,58,0.45);
+  border-radius:20px;
+  padding:20px 14px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+}
+
+.footer-item{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.footer-item i{
+  color:#d4a53a;
+  font-size:22px;
+  margin-top:2px;
+}
+
+.footer-item h4{
+  color:#d4a53a;
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+.footer-item p{
+  font-size:12px;
+  color:#f0f0f0;
+  line-height:1.5;
+}
+
+.copyright{
+  text-align:center;
+  margin-top:16px;
+  font-size:12px;
+  color:#f5f5f5;
+}
+
+@media(max-width:768px){
+
+  header h1{
+    font-size:18px;
+  }
+
+  .dashboard{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li>
-        <a href="restrito.html" target="_blank">🔒 Restrito</a>
-      </li>
-      <li><a href="https://adr-correa.github.io/CME-CONTROLE-DE-OCORR-NCIA/" target="_blank">ALERTA SEM COMUNICAÇÃO</a></li>
-      <li class="has-submenu">
-        <a href="#">🖥️ Sistemas <span class="arrow">▶️</span></a>
-        <ul class="submenu">
-          <li><a href="https://siapen.portal.ap.gov.br" target="_blank">LIVRO DE OCORRÊNCIAS</a></li>
-          <li><a href="https://centralap.github.io/passagemdeservico/">PASSAGEM DE SERVIÇO</a></li>
-          <li><a href="https://centralap.github.io/login/" target="_blank">Monitoramento de Relatórios</a></li>
-          <li><a href="https://akiles.ap.uetecnologia.com.br" target="_blank">SISTEMA AKILES</a></li>
-          <li><a href="https://prodoc.ap.gov.br/login" target="_blank">PRODOC</a></li>
-          <li><a href="https://centralap.github.io/boletim/" target="_blank">REGISTRO AKILES</a></li>
-          <li><a href="https://web.airdroid.com/" target="_blank">FOTOS</a></li>
-          <li><a href="https://centralap.github.io/ocr/" target="_blank">OCR</a></li>
-          
-        </ul>
-      </li>
-      <li class="has-submenu">
-        <a href="#">📄 Requerimentos <span class="arrow">▶️</span></a>
-        <ul class="submenu">
-          <li><a href="https://centralap.github.io/endereco/" target="_blank">Alteração de Endereço</a></li>
-          <li><a href="https://centralap.github.io/dadoscadastrais/" target="_blank">Formulário Dados Cadastrais</a></li>
-          </ul>
-      </li>
-    </ul>
-  </nav>
 
-  <main>
-    <header>
-      <img src="logo-pp.png" alt="Logo CME">
-      <h1>Central de Monitoramento Eletrônico - CME</h1>
-      <p>GOVERNO DO ESTADO DO AMAPÁ</p>
-      <p>SECRETARIA DE ESTADO DE JUSTIÇA E SEGURANÇA PÚBLICA</p>
-      <p>INSTITUTO DE ADMINISTRAÇÃO PENITENCIÁRIA DO AMAPÁ</p>
-    </header>
+<div class="container">
 
-    <div class="container">
-      <section class="funcoes">
-        <h2>Perfil da Central</h2>
-        <p>Uma Central de Monitoramento Eletrônico (CME) é um centro de controle que monitora a localização e os movimentos de indivíduos que utilizam tornozeleiras eletrônicas.</p>
-        <h3>Funções da CME:</h3>
-        <ul>
-          <li><strong>Monitoramento em tempo real:</strong> Recebe informações de localização da tornozeleira eletrônica.</li>
-          <li><strong>Supervisão e fiscalização:</strong> Verifica o cumprimento das condições impostas pela Justiça.</li>
-          <li><strong>Resposta a alertas:</strong> Aciona as autoridades em caso de violação das regras de monitoramento.</li>
-          <li><strong>Orientação e apoio:</strong> Oferece suporte aos monitorados.</li>
-          <li><strong>Gerenciamento de informações:</strong> Armazena e organiza dados dos monitorados.</li>
-          <li><strong>Elaboração de relatórios:</strong> Produz relatórios sobre o cumprimento das medidas.</li>
-        </ul>
-      </section>
-    </div>
+<header>
 
-    <footer>
-      <p>&copy; 2026 Central de Monitoramento Eletrônico - CME | Governo do Estado do Amapá</p>
-      <p><strong>Endereço:</strong> Av. Machado de Assis, 372 – Santa Rita, CEP: 68.901-257</p>
-      <p><strong>Telefone:</strong> (096) 98415-2844</p>
-      <p><strong>Email:</strong> cme.iapen.ap@gmail.com</p>
-      <p><strong>Gerente:</strong> Everton Nunes - Decreto n.º xxxx 2025 – GEA</p>
-    </footer>
-  </main>
+<img src="logo-pp.png" class="logo" alt="Polícia Penal AP">
+
+<h1>CENTRAL DE MONITORAMENTO ELETRÔNICO - CME</h1>
+
+<div class="line"></div>
+
+<div class="gov">
+GOVERNO DO ESTADO DO AMAPÁ
+</div>
+
+<div class="sub">
+SECRETARIA DE ESTADO DE JUSTIÇA E SEGURANÇA PÚBLICA
+</div>
+
+<div class="sub">
+INSTITUTO DE ADMINISTRAÇÃO PENITENCIÁRIA DO AMAPÁ
+</div>
+
+</header>
+
+<section class="dashboard">
+
+<a href="https://akiles.ap.uetecnologia.com.br" target="_blank" class="card">
+
+<div class="akiles-box">
+<img src="akiles.png" alt="Sistema Akiles">
+</div>
+
+<h3>Monitoramento Eletrônico</h3>
+<p>Acompanhamento em tempo real</p>
+<div class="arrow">→</div>
+
+</a>
+
+<a href="#" class="card">
+<div class="icon-box green">
+<i class="fa-solid fa-chart-simple"></i>
+</div>
+<h3>Painel de Indicadores</h3>
+<p>Dados e estatísticas</p>
+<div class="arrow">→</div>
+</a>
+
+<a href="https://adr-correa.github.io/CME-CONTROLE-DE-OCORR-NCIA/" target="_blank" class="card">
+<div class="icon-box purple">
+<i class="fa-solid fa-bell"></i>
+</div>
+<h3>Alertas e Ocorrências</h3>
+<p>Gestão de alertas</p>
+<div class="arrow">→</div>
+</a>
+
+<a href="https://centralap.github.io/boletim/" target="_blank" class="card">
+<div class="icon-box orange">
+<i class="fa-solid fa-file-lines"></i>
+</div>
+<h3>Relatórios Gerenciais</h3>
+<p>Relatórios e análises</p>
+<div class="arrow">→</div>
+</a>
+
+<a href="https://siapen.portal.ap.gov.br" target="_blank" class="card">
+<div class="icon-box cyan">
+<i class="fa-solid fa-book"></i>
+</div>
+<h3>Livro de Ocorrências</h3>
+<p>Registro institucional</p>
+<div class="arrow">→</div>
+</a>
+
+<a href="https://centralap.github.io/cme/restrito.html" target="_blank" class="card">
+<div class="icon-box blue">
+<i class="fa-solid fa-lock"></i>
+</div>
+<h3>Área Restrita CME</h3>
+<p>Acesso restrito</p>
+<div class="arrow">→</div>
+</a>
+
+<a href="https://centralap.github.io/cme/restrito.html" target="_blank" class="card">
+<div class="icon-box blue">
+<i class="fa-solid fa-user-shield"></i>
+</div>
+<h3>CME Restrito</h3>
+<p>Sistema interno</p>
+<div class="arrow">→</div>
+</a>
+
+<a href="https://centralap.github.io/passagemdeservico/" target="_blank" class="card">
+<div class="icon-box pink">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+<h3>Passagem de Serviço</h3>
+<p>Controle de plantão</p>
+<div class="arrow">→</div>
+</a>
+
+<a href="https://web.airdroid.com/" target="_blank" class="card">
+<div class="icon-box yellow">
+<i class="fa-solid fa-camera"></i>
+</div>
+<h3>Fotos</h3>
+<p>Arquivos e imagens</p>
+<div class="arrow">→</div>
+</a>
+
+<a href="https://centralap.github.io/ocr/" target="_blank" class="card">
+<div class="icon-box red">
+<i class="fa-solid fa-magnifying-glass"></i>
+</div>
+<h3>OCR Inteligente</h3>
+<p>Leitor e reconhecimento</p>
+<div class="arrow">→</div>
+</a>
+
+</section>
+
+<footer>
+
+<div class="footer-grid">
+
+<div class="footer-item">
+<i class="fa-solid fa-location-dot"></i>
+<div>
+<h4>ENDEREÇO</h4>
+<p>Av. Machado de Assis, 372 – Santa Rita, CEP: 68.901-257</p>
+</div>
+</div>
+
+<div class="footer-item">
+<i class="fa-solid fa-phone"></i>
+<div>
+<h4>TELEFONE</h4>
+<p>(096) 98415-2844</p>
+</div>
+</div>
+
+<div class="footer-item">
+<i class="fa-solid fa-envelope"></i>
+<div>
+<h4>EMAIL</h4>
+<p>cme.iapen.ap@gmail.com</p>
+</div>
+</div>
+
+<div class="footer-item">
+<i class="fa-solid fa-user"></i>
+<div>
+<h4>GERENTE</h4>
+<p>Everton Nunes<br>Decreto n.º xxxx 2025 – GEA</p>
+</div>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 Central de Monitoramento Eletrônico - CME | Governo do Estado do Amapá
+</div>
+
+</footer>
+
+</div>
+
 </body>
 </html>
-
-
-

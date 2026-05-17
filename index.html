@@ -1,5 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<style>
+
+html,body{
+  user-select:none;
+}
+
+#security-overlay{
+
+  position:fixed;
+  inset:0;
+
+  background:#020617;
+
+  z-index:999999;
+
+  display:none;
+
+  justify-content:center;
+  align-items:center;
+
+  flex-direction:column;
+
+  color:white;
+
+  font-family:Arial,sans-serif;
+}
+
+#security-overlay h1{
+  font-size:48px;
+}
+
+</style>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -447,6 +479,78 @@ INSTITUTO DE ADMINISTRAÇÃO PENITENCIÁRIA DO AMAPÁ
 </footer>
 
 </div>
+<div id="security-overlay">
 
+  <h1>
+    Acesso Bloqueado
+  </h1>
+
+</div>
+<script>
+
+/* BLOQUEAR CLIQUE DIREITO */
+
+document.addEventListener('contextmenu', e => {
+  e.preventDefault();
+});
+
+/* BLOQUEAR F12 */
+
+document.addEventListener('keydown', function(e){
+
+  if(e.key === 'F12'){
+
+    e.preventDefault();
+
+  }
+
+  if(e.ctrlKey && e.shiftKey && e.key === 'I'){
+
+    e.preventDefault();
+
+  }
+
+  if(e.ctrlKey && e.key.toLowerCase() === 'u'){
+
+    e.preventDefault();
+
+  }
+
+});
+
+/* DETECTAR DEVTOOLS */
+
+function bloquearSistema(){
+
+  document.getElementById(
+    'security-overlay'
+  ).style.display = 'flex';
+
+}
+
+function detectarDevTools(){
+
+  const largura =
+    window.outerWidth -
+    window.innerWidth > 160;
+
+  const altura =
+    window.outerHeight -
+    window.innerHeight > 160;
+
+  if(largura || altura){
+
+    bloquearSistema();
+
+  }
+
+}
+
+setInterval(
+  detectarDevTools,
+  1000
+);
+
+</script>
 </body>
 </html>

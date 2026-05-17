@@ -545,5 +545,80 @@
 
   </script>
 
+</footer>
+
+</div>
+<div id="security-overlay">
+
+ 
+
+</div>
+<script>
+
+/* BLOQUEAR CLIQUE DIREITO */
+
+document.addEventListener('contextmenu', e => {
+  e.preventDefault();
+});
+
+/* BLOQUEAR F12 */
+
+document.addEventListener('keydown', function(e){
+
+  if(e.key === 'F12'){
+
+    e.preventDefault();
+
+  }
+
+  if(e.ctrlKey && e.shiftKey && e.key === 'I'){
+
+    e.preventDefault();
+
+  }
+
+  if(e.ctrlKey && e.key.toLowerCase() === 'u'){
+
+    e.preventDefault();
+
+  }
+
+});
+
+/* DETECTAR DEVTOOLS */
+
+function bloquearSistema(){
+
+  document.getElementById(
+    'security-overlay'
+  ).style.display = 'flex';
+
+}
+
+function detectarDevTools(){
+
+  const largura =
+    window.outerWidth -
+    window.innerWidth > 160;
+
+  const altura =
+    window.outerHeight -
+    window.innerHeight > 160;
+
+  if(largura || altura){
+
+    bloquearSistema();
+
+  }
+
+}
+
+setInterval(
+  detectarDevTools,
+  1000
+);
+
+</script>
 </body>
 </html>
+
